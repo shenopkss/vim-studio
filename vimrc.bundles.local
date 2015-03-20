@@ -1,0 +1,54 @@
+Bundle 'mattn/emmet-vim'
+Bundle 'EasyGrep'
+    "let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
+    "let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1
+    "let g:EasyGrepRecursive  = 1 " Recursive searching
+    "let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
+    "let g:EasyGrepFilesToExclude = "*.bak, *~, cscope.*, *.a, *.o, *.pyc, *.bak"
+
+"buffer管理"
+Bundle 'fholgado/minibufexpl.vim'
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <Leader>b :b
+map <S-Tab> :bn<cr>
+map <A-Tab> :bp<cr>
+map <C-1> :b1<cr>
+map <C-2> :b2<cr>
+map <C-3> :b3<cr>
+map <C-4> :b4<cr>
+map <C-5> :b5<cr>
+map <C-6> :b6<cr>
+map <C-7> :b7<cr>
+map <C-8> :b8<cr>
+map <C-9> :b9<cr>
+map <C-0> :b10<cr>
+
+
+Bundle 'cscope.vim'
+    " in case your cscope execute is not in system path.
+    " let g:cscope_cmd = 'D:/tools/vim/cscope.exe'
+    " s: Find this C symbol
+    map <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+    " g: Find this definition
+    map <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+    " d: Find functions called by this function
+    map <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+    " c: Find functions calling this function
+    map <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+    " t: Find this text string
+    map <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+    " e: Find this egrep pattern
+    map <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+    " f: Find this file
+    map <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+    " i: Find files #including this file
+    map <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+    map <leader>l :call ToggleLocationList()<CR>
+
+Bundle 'joonty/vim-phpunitqf.git'
+    let g:phpunit_args = "-c app"
+Bundle 'shenopkss/symfony2.vim' 
+
+

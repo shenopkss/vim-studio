@@ -1,0 +1,69 @@
+"  shenopkss.vim config { let mapleader=";"
+    " set <leader>
+    let mapleader=";"
+    " 设置快捷键将系统剪贴板内容粘贴至 vim"
+    vnoremap <Leader>y "+y
+    nmap <Leader>p "+p
+    " 定义快捷键关闭当前分割窗口
+    nmap <Leader>q :q<CR>
+    " 定义快捷键保存当前窗口内容
+    nmap <Leader>w :w<CR>
+    " 定义快捷键保存所有窗口内容并退出 vim
+    nmap <Leader>WQ :wa<CR>:q<CR>
+    " 不做任何保存，直接退出 vim
+    nmap <Leader>Q :qa!<CR>
+
+    " 关闭缓冲区
+    noremap <Leader>bc :bdelete<CR>
+    " 退出quickfix
+    noremap <Leader>fq :cclose<CR>
+    " 依次遍历子窗口
+    nnoremap nw <C-W><C-W>"
+
+    noremap <Leader>' vi'
+    noremap <Leader>" vi"
+    noremap <Leader>( vi(
+    noremap <Leader>[ vi[
+    noremap <Leader>{ vi{
+
+    " autoload .vimrc
+    autocmd! BufWritePost $MYVIMRC source %
+    " open vimrc
+    nnoremap <leader>vi :vsplit $MYVIMRC<cr>
+" }
+" Plugins {
+    " NerdTree {
+        if isdirectory(expand("~/.vim/bundle/nerdtree"))
+            let NERDTreeWinPos='righ'
+            " NERDTree 子窗口中不显示冗余帮助信息
+            let NERDTreeMinimalUI=1
+            let NERDTreeShowLineNumbers=1
+        endif
+    " }
+    " EasyMotion {
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+        " Bi-directional find motion
+        " " Jump to anywhere you want with minimal keystrokes, with just one
+        " key binding.
+        " " `s{char}{label}`
+        nmap s <Plug>(easymotion-s)
+        " " or
+        " " `s{char}{char}{label}`
+        " " Need one more keystroke, but on average, it may be more
+        " comfortable.
+        nmap S <Plug>(easymotion-s2)
+        "
+        " " Turn on case insensitive feature
+        let g:EasyMotion_smartcase = 1
+        "
+        " " JK motions: Line motions
+        map <Leader>j <Plug>(easymotion-j)
+        map <Leader>k <Plug>(easymotion-k)
+        map  / <Plug>(easymotion-sn)
+        omap / <Plug>(easymotion-tn)
+        map  n <Plug>(easymotion-next)
+        map  N <Plug>(easymotion-prev)
+    " }
+" }
+
