@@ -30,6 +30,9 @@
     autocmd! BufWritePost $MYVIMRC source %
     " open vimrc
     nnoremap <leader>vi :vsplit $MYVIMRC<cr>
+
+    set t_Co=256
+    colorscheme Dracula
 " }
 " Plugins {
     " NerdTree {

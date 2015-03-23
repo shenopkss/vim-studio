@@ -6,25 +6,6 @@ Bundle 'EasyGrep'
     "let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
     "let g:EasyGrepFilesToExclude = "*.bak, *~, cscope.*, *.a, *.o, *.pyc, *.bak"
 
-"buffer管理"
-Bundle 'fholgado/minibufexpl.vim'
-" 显示/隐藏 MiniBufExplorer 窗口
-map <Leader>bl :MBEToggle<cr>
-" buffer 切换快捷键
-map <Leader>b :b
-map <S-Tab> :bn<cr>
-map <A-Tab> :bp<cr>
-map <C-1> :b1<cr>
-map <C-2> :b2<cr>
-map <C-3> :b3<cr>
-map <C-4> :b4<cr>
-map <C-5> :b5<cr>
-map <C-6> :b6<cr>
-map <C-7> :b7<cr>
-map <C-8> :b8<cr>
-map <C-9> :b9<cr>
-map <C-0> :b10<cr>
-
 
 Bundle 'cscope.vim'
     " in case your cscope execute is not in system path.
@@ -52,3 +33,13 @@ Bundle 'joonty/vim-phpunitqf.git'
 Bundle 'shenopkss/symfony2.vim' 
 
 
+"buffer管理"
+Bundle 'fholgado/minibufexpl.vim'
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <Leader>b :b
+map <A-Tab> :bn<cr>
+map <S-Tab> :bp<cr>
+
+Bundle 'zenorocha/dracula-theme', {'rtp': 'vim/'}
