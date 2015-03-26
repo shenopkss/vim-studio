@@ -29,10 +29,23 @@
     " autoload .vimrc
     autocmd! BufWritePost $MYVIMRC source %
     " open vimrc
-    nnoremap <leader>vi :vsplit $MYVIMRC<cr>
+    nnoremap <leader>vi :vsplit $MYVIMRC.local<cr>
+    nnoremap <leader>vib :vsplit $MYVIMRC.bundles.local<cr>
 
-    set t_Co=256
-    colorscheme Dracula
+    ""set t_Co=256
+    ""colorscheme Dracula
+    ""let g:molokai_original = 1
+    ""let g:rehash256 = 1
+    ""colorscheme molokai
+
+
+    nmap <S-TAB> :bn<CR>
+    nmap <C-TAB> :bp<CR>
+    nmap <Leader>bd :bd<CR>
+    set nofoldenable
+    nmap <Leader><Leader> $a;<esc>
+    nmap <C-j> <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+
 " }
 " Plugins {
     " NerdTree {
@@ -63,10 +76,11 @@
         " " JK motions: Line motions
         map <Leader>j <Plug>(easymotion-j)
         map <Leader>k <Plug>(easymotion-k)
-        map  / <Plug>(easymotion-sn)
-        omap / <Plug>(easymotion-tn)
-        map  n <Plug>(easymotion-next)
-        map  N <Plug>(easymotion-prev)
+        map  \ <Plug>(easymotion-sn)
+        omap \ <Plug>(easymotion-tn)
+        "map  n <Plug>(easymotion-next)
+        "map  N <Plug>(easymotion-prev)
     " }
 " }
+
 
