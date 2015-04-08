@@ -1,4 +1,6 @@
-"  shenopkss.vim config { let mapleader=";"
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
+"  shenopkss.vim config {
     " set <leader>
     let mapleader=";"
     " 设置快捷键将系统剪贴板内容粘贴至 vim"
@@ -13,10 +15,6 @@
     " 不做任何保存，直接退出 vim
     nmap <Leader>Q :qa!<CR>
 
-    " 关闭缓冲区
-    noremap <Leader>bc :bdelete<CR>
-    " 退出quickfix
-    noremap <Leader>fq :cclose<CR>
     " 依次遍历子窗口
     nnoremap nw <C-W><C-W>"
 
@@ -27,23 +25,33 @@
     noremap <Leader>{ vi{
 
     " autoload .vimrc
-    autocmd! BufWritePost $MYVIMRC source %
+    autocmd! BufWritePost $MYVIMRC.local source $MYVIMRC
+    autocmd! BufWritePost $MYVIMRC.bundles.local source $MYVIMRC
+
     " open vimrc
     nnoremap <leader>vi :vsplit $MYVIMRC.local<cr>
     nnoremap <leader>vib :vsplit $MYVIMRC.bundles.local<cr>
 
-    ""set t_Co=256
-    ""colorscheme Dracula
+    set t_Co=256
+    colorscheme Dracula
     ""let g:molokai_original = 1
     ""let g:rehash256 = 1
     ""colorscheme molokai
 
+    set mouse=
+    set nofoldenable
 
     nmap <S-TAB> :bn<CR>
-    nmap <C-TAB> :bp<CR>
-    nmap <Leader>bd :bd<CR>
+    nmap <Leader><TAB> :bp<CR>
+    nmap <Leader>b :bd<CR>
     set nofoldenable
-    nmap <Leader><Leader> $a;<esc>
+
+    " 行尾添加符号
+    nmap <Leader>; $a;<esc>
+    nmap <Leader>, $a,
+    nmap <Leader>= $a => 
+    nmap <Leader>: $a : 
+    nmap <Leader>{ $a{ 
     nmap <C-j> <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 
 " }
@@ -81,6 +89,15 @@
         "map  n <Plug>(easymotion-next)
         "map  N <Plug>(easymotion-prev)
     " }
+    " Fugitive deep git integration {
+        nmap <leader>gs :Gstatus<cr>
+        nmap <leader>gd :Gdiff<cr>
+        nmap <leader>gc :Gcommit<cr>
+        nmap <leader>gb :Gblame<cr>
+        nmap <leader>gl :Glog<cr>
+        nmap <leader>gp :Git push<cr>
+
+    "}
 " }
 
 
