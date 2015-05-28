@@ -43,7 +43,7 @@
 
     nmap <S-TAB> :bn<CR>
     nmap <Leader><TAB> :bp<CR>
-    nmap <Leader>b :bd<CR>
+    nmap <Leader>bd :bd<CR>
     set nofoldenable
 
     " 行尾添加符号
