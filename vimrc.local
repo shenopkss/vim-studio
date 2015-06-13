@@ -33,16 +33,16 @@
     nnoremap <leader>vib :vsplit $MYVIMRC.bundles.local<cr>
 
     set t_Co=256
-    colorscheme Dracula
-    ""let g:molokai_original = 1
-    ""let g:rehash256 = 1
-    ""colorscheme molokai
+    "colorscheme Dracula
+    let g:molokai_original = 1
+    let g:rehash256 = 1
+    colorscheme molokai
 
     set mouse=
     set nofoldenable
 
-    nmap <S-TAB> :bn<CR>
-    nmap <Leader><TAB> :bp<CR>
+    nmap <S-TAB> :bp<CR>
+    nmap <Leader><TAB> :bn<CR>
     nmap <Leader>bd :bd<CR>
     set nofoldenable
 

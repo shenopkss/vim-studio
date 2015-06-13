@@ -28,19 +28,8 @@ Bundle 'cscope.vim'
     map <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
     map <leader>l :call ToggleLocationList()<CR>
 
-Bundle 'joonty/vim-phpunitqf.git'
-    let g:phpunit_args = "-c app"
-Bundle 'shenopkss/symfony2.vim' 
+"Bundle 'joonty/vim-phpunitqf.git'
+"    let g:phpunit_args = "-c app"
+"Bundle 'shenopkss/symfony2.vim' 
 
-
-"buffer管理"
-"UnBundle 'fholgado/minibufexpl.vim'
-"" 显示/隐藏 MiniBufExplorer 窗口
-"map <Leader>bl :MBEToggle<cr>
-"" buffer 切换快捷键
-"map <Leader>b :b
-"map <A-Tab> :bn<cr>
-"map <S-Tab> :bp<cr>
-
-
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
