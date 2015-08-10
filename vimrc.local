@@ -14,6 +14,7 @@
     nmap <Leader>WQ :wa<CR>:q<CR>
     " 不做任何保存，直接退出 vim
     nmap <Leader>Q :qa!<CR>
+    nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
     " 依次遍历子窗口
     nnoremap nw <C-W><C-W>"
@@ -23,6 +24,9 @@
     noremap <Leader>( vi(
     noremap <Leader>[ vi[
     noremap <Leader>{ vi{
+
+    noremap <Leader>y "9y
+    noremap <Leader>p "9p
 
     " autoload .vimrc
     autocmd! BufWritePost $MYVIMRC.local source $MYVIMRC
@@ -53,6 +57,7 @@
     nmap <Leader>: $a : 
     nmap <Leader>{ $a{ 
     nmap <C-j> <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+    nmap zz ^lzf%<esc>
 
 " }
 " Plugins {
@@ -99,5 +104,3 @@
 
     "}
 " }
-
-
