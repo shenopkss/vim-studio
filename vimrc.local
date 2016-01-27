@@ -35,6 +35,7 @@
     " open vimrc
     nnoremap <leader>vi :vsplit $MYVIMRC.local<cr>
     nnoremap <leader>vib :vsplit $MYVIMRC.bundles.local<cr>
+    au FileType php setlocal dict+=~/.vim/dict/php_funclist.txt
 
     set t_Co=256
     "colorscheme Dracula
@@ -56,7 +57,7 @@
     nmap <Leader>= $a => 
     nmap <Leader>: $a : 
     nmap <Leader>{ $a{ 
-    nmap <C-j> <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+    nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
     nmap zz ^lzf%<esc>
 
 " }
@@ -103,4 +104,21 @@
         nmap <leader>gp :Git push<cr>
 
     "}
+    " EasyGrep {
+        let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
+        let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1
+        let g:EasyGrepRecursive  = 1 " Recursive searching
+        let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
+        let g:EasyGrepFilesToExclude = "*.bak, *~, cscope.*, *.a, *.o, *.pyc, *.bak, *.log, *.cache"
+    "}
+    " Tabularize {
+        nmap <Leader>a= :Tabularize /=<cr>
+        nmap <Leader>a> :Tabularize /=><cr>
+        nmap <Leader>a: :Tabularize /:<cr>
+        nmap <Leader>a:: :Tabularize /:\zs<cr>
+        nmap <Leader>a, :Tabularize /,<cr>
+        nmap <Leader>a<Bar> :Tabularize /<cr>
+
+    " }
 " }
+

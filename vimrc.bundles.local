@@ -1,12 +1,5 @@
 Bundle 'mattn/emmet-vim'
 Bundle 'EasyGrep'
-    "let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
-    "let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1
-    "let g:EasyGrepRecursive  = 1 " Recursive searching
-    "let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
-    "let g:EasyGrepFilesToExclude = "*.bak, *~, cscope.*, *.a, *.o, *.pyc, *.bak"
-
-
 Bundle 'cscope.vim'
     " in case your cscope execute is not in system path.
     " let g:cscope_cmd = 'D:/tools/vim/cscope.exe'
