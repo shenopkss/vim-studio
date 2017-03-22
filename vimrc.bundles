@@ -52,6 +52,10 @@ Plug 'dracula/vim'
 
 Plug 'mattn/emmet-vim'
 
+Plug 'vim-scripts/matchit.zip'
+
+Plug 'rking/ag.vim'
+
 call plug#end()
 
 " syntastic {{{
@@ -145,6 +149,10 @@ call plug#end()
     let g:multi_cursor_quit_key='<Esc>'
 " }}}
 "
+" ag.vim {{{
+    nnoremap <Leader>gg :Ag<CR>
+    let g:ag_working_path_mode="r"
+" }}}
 " fugitive {{{
     " :Gdiff  :Gstatus :Gvsplit
     nnoremap <leader>gd :Gdiff<CR>

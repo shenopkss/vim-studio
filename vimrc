@@ -3,7 +3,7 @@ let mapleader = ';'
 let g:mapleader = ';'
 
 " 开启语法高亮
-syntax on
+" syntax on
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -134,8 +134,8 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
-set foldlevel=99
+set foldmethod=manual
+" set foldlevel=99
 " 代码折叠自定义快捷键 <leader>zz
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
@@ -179,12 +179,12 @@ set ttyfast
 set nrformats=
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+" set relativenumber number
+" au FocusLost * :set norelativenumber number
+" au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
+" autocmd InsertEnter * :set norelativenumber number
+" autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -614,6 +614,8 @@ if has("gui_running")
     set showtabline=1
     set linespace=2
     set noimd
+    set imi=0 
+    set ims=0 
     set t_Co=256
 endif
 
@@ -663,6 +665,7 @@ highlight SpellLocal term=underline cterm=underline
     nmap <Leader>{ $a{
     nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 
+    
 " }}}
 
 
