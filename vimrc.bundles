@@ -56,6 +56,13 @@ Plug 'vim-scripts/matchit.zip'
 
 Plug 'rking/ag.vim'
 
+Plug 'stephpy/vim-php-cs-fixer'
+
+" Group dependencies, vim-snippets depends on ultisnips
+" 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
 call plug#end()
 
 " syntastic {{{
@@ -157,8 +164,9 @@ call plug#end()
     " :Gdiff  :Gstatus :Gvsplit
     nnoremap <leader>gd :Gdiff<CR>
     nnoremap <leader>gs :Gstatus<CR>
+    nnoremap <leader>gp :Gpull<CR>
     " <leader>gb maps to :Gblame<CR>
-    " <leader>gl maps to :Glog<CR>
+    nnoremap <leader>gl :Glog<CR>
     " <leader>gc maps to :Gcommit<CR>
     " <leader>gp maps to :Git push<CR>
 " }}}
@@ -186,7 +194,7 @@ call plug#end()
     let NERDTreeShowLineNumbers=1
 
     "close vim if the only window left open is a NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
     " s/v 分屏打开文件
     let g:NERDTreeMapOpenSplit = 's'
     let g:NERDTreeMapOpenVSplit = 'v'
@@ -354,4 +362,63 @@ call plug#end()
         \ 'tagbar' : 1,
         \ 'gitcommit' : 1,
         \}
+" }}}
+
+" ultisnips {{{
+    let g:UltiSnipsExpandTrigger       = "<c-j>"
+    let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+    let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
+    let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+    " 定义存放代码片段的文件夹 .vim/UltiSnips下，使用自定义和默认的，将会的到全局，有冲突的会提示
+    " 进入对应filetype的snippets进行编辑
+    map <leader>us :UltiSnipsEdit<CR>
+
+    " ctrl+j/k 进行选择
+    func! g:JInYCM()
+        if pumvisible()
+            return "\<C-n>"
+        else
+            return "\<c-j>"
+        endif
+    endfunction
+
+    func! g:KInYCM()
+        if pumvisible()
+            return "\<C-p>"
+        else
+            return "\<c-k>"
+        endif
+    endfunction
+    inoremap <c-j> <c-r>=g:JInYCM()<cr>
+    au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
+    let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+" }}}
+ 
+" stephpy/vim-php-cs-fixer {{{
+    " If php-cs-fixer is in $PATH, you don't need to define line below
+    " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+
+    " If you use php-cs-fixer version 1.x
+    let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
+    let g:php_cs_fixer_config = "default"                  " options: --config
+    " If you want to define specific fixers:
+    "let g:php_cs_fixer_fixers_list = "linefeed,short_tag" " options: --fixers
+    "let g:php_cs_fixer_config_file = '.php_cs'            " options: --config-file
+    " End of php-cs-fixer version 1 config params
+
+    " If you use php-cs-fixer version 2.x
+    let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
+    "let g:php_cs_fixer_cache = ".php_cs.cache" " options: --cache-file
+    "let g:php_cs_fixer_config_file = '.php_cs' " options: --config
+    " End of php-cs-fixer version 2 config params
+
+    let g:php_cs_fixer_php_path = "php"               " Path to PHP
+    let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+    let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+    let g:php_cs_fixer_verbose = 0  
+
+    " nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+    nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
+    " autocmd FileType php autocmd BufWritePre <buffer> :call PhpCsFixerFixFile()
 " }}}

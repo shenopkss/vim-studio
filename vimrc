@@ -403,8 +403,11 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " tab/buffer相关
 
 " 切换前后buffer
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
+" nnoremap [b :bprevious<cr>
+" nnoremap ]b :bnext<cr>
+" nnoremap <leader><tab> :bnext<cr>
+nnoremap <TAB> :bnext<cr>
+nnoremap <S-TAB> :bprevious<cr>
 nmap <Leader>d :bd<CR>
 
 
@@ -467,8 +470,17 @@ map Y y$
 
 " 复制选中区到系统剪切板中
 vnoremap <leader>y "+y
-noremap <leader>p "+p
+nnoremap <leader>y "+yy
+nnoremap <leader>p "+p
 
+nnoremap <leader>ay "ayy
+nnoremap <leader>by "byy
+vnoremap <leader>ay "ay
+vnoremap <leader>by "ay
+
+nnoremap <leader>ap "ap
+nnoremap <leader>bp "bp
+ 
 " auto jump to end of select
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
@@ -525,6 +537,8 @@ autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue set filetype=html
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
+
+
 
 
 
@@ -606,6 +620,7 @@ if has("gui_running")
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 11,Monospace\ 11
     endif
+    set mouse=a
     set guioptions-=T
     set guioptions+=e
     set guioptions-=r
@@ -613,9 +628,9 @@ if has("gui_running")
     set guitablabel=%M\ %t
     set showtabline=1
     set linespace=2
-    set noimd
-    set imi=0 
-    set ims=0 
+    set noimdisable
+    autocmd! InsertLeave * set imdisable|set iminsert=0
+    autocmd! InsertEnter * set noimdisable|set iminsert=0
     set t_Co=256
 endif
 
