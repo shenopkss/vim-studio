@@ -406,10 +406,21 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " nnoremap [b :bprevious<cr>
 " nnoremap ]b :bnext<cr>
 " nnoremap <leader><tab> :bnext<cr>
-nnoremap <TAB> :bnext<cr>
-nnoremap <S-TAB> :bprevious<cr>
+nnoremap <S-TAB> :bnext<cr>
+nnoremap <TAB> :bprevious<cr>
 nmap <Leader>d :bd<CR>
+nmap <Leader>l :ls<CR>
 
+noremap <leader>1 :1b<cr>
+noremap <leader>2 :2b<cr>
+noremap <leader>3 :3b<cr>
+noremap <leader>4 :4b<cr>
+noremap <leader>5 :5b<cr>
+noremap <leader>6 :6b<cr>
+noremap <leader>7 :7b<cr>
+noremap <leader>8 :8b<cr>
+noremap <leader>9 :9b<cr>
+noremap <leader>0 :blast<cr>
 
 " 使用方向键切换buffer
 "noremap <left> :bp<CR>
@@ -534,7 +545,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 " autocmd FileType ruby,javascript,html,css,xml set tabstop=4 shiftwidth=4 softtabstop=4 expandtab ai;
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
-autocmd BufRead,BufNewFile *.vue set filetype=html
+autocmd BufRead,BufNewFile *.vue,*.twig,*.blade.php set filetype=html
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
 
@@ -615,8 +626,8 @@ endif
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guifont=Monaco:h11
-    " set guifont=Source_Code_Pro:h12
+    " set guifont=Monaco:h11
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 11,Monospace\ 11
     endif
@@ -629,9 +640,10 @@ if has("gui_running")
     set showtabline=1
     set linespace=2
     set noimdisable
+    set t_Co=256
+
     autocmd! InsertLeave * set imdisable|set iminsert=0
     autocmd! InsertEnter * set noimdisable|set iminsert=0
-    set t_Co=256
 endif
 
 
