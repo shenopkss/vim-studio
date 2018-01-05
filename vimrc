@@ -377,7 +377,8 @@ cnoremap <C-e> <End>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+" map <space> /
+map <space> :Ag 
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -406,8 +407,8 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " nnoremap [b :bprevious<cr>
 " nnoremap ]b :bnext<cr>
 " nnoremap <leader><tab> :bnext<cr>
-nnoremap <S-TAB> :bnext<cr>
-nnoremap <TAB> :bprevious<cr>
+nnoremap <TAB> :bnext<cr>
+nnoremap <S-TAB> :bprevious<cr>
 nmap <Leader>d :bd<CR>
 nmap <Leader>l :ls<CR>
 
@@ -685,16 +686,10 @@ highlight SpellLocal term=underline cterm=underline
     noremap <Leader>{ vi{
 
     " 行尾添加符号
-    nmap <Leader>; $a;<esc>
+    nmap <Leader>; $a;
     nmap <Leader>, $a,
     nmap <Leader>= $a => 
     nmap <Leader>: $a : 
     nmap <Leader>{ $a{
     nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-
-    
 " }}}
-
-
-
-

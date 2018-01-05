@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+"brookhong/DBGPavim
+" Plug 'brookhong/DBGPavim'
+
 " syntastic
 Plug 'scrooloose/syntastic'
 
@@ -23,7 +26,7 @@ Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 Plug 'bronson/vim-trailing-whitespace'
 
 " nerdtree nerdtreetabs
-Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree'
 
 " ctrlp ctrlpfunky
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
@@ -36,7 +39,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-fugitive'
 
 " ctrlspace
-Plug 'vim-ctrlspace/vim-ctrlspace'
+" Plug 'vim-ctrlspace/vim-ctrlspace'
 
 " tagbar
 Plug 'majutsushi/tagbar'
@@ -52,6 +55,7 @@ Plug 'dracula/vim'
 
 Plug 'mattn/emmet-vim'
 
+" extended % matching for HTML, LaTeX
 Plug 'vim-scripts/matchit.zip'
 
 Plug 'rking/ag.vim'
@@ -61,7 +65,7 @@ Plug 'stephpy/vim-php-cs-fixer'
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -186,7 +190,7 @@ call plug#end()
     let g:airline_symbols.branch = '⎇'
 endif
     " 是否打开tabline
-    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#enabled = 0
     let g:airline#extensions#tabline#buffer_nr_show = 1
     let g:airline#extensions#tabline#left_sep = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -194,7 +198,7 @@ endif
 " }}}
 
 " nerdtree nerdtreetabs {{{
-    " map <leader>n :NERDTreeToggle<CR>
+    map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     " NERDTree 子窗口中不显示冗余帮助信息
@@ -208,14 +212,14 @@ endif
     let g:NERDTreeMapOpenVSplit = 'v'
 
     " nerdtreetabs
-    map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    " map <Leader>n <plug>NERDTreeTabsToggle<CR>
     " 关闭同步
     " let g:nerdtree_tabs_synchronize_view=0
     " let g:nerdtree_tabs_synchronize_focus=0
     " 是否自动开启nerdtree
     " thank to @ListenerRi, see https://github.com/wklken/k-vim/issues/165
-    let g:nerdtree_tabs_open_on_console_startup=0
-    let g:nerdtree_tabs_open_on_gui_startup=0
+    " let g:nerdtree_tabs_open_on_console_startup=0
+    " let g:nerdtree_tabs_open_on_gui_startup=0
 " }}}
 
 " Vim Workspace Controller
@@ -429,4 +433,8 @@ endif
     " nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
     nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
     " autocmd FileType php autocmd BufWritePre <buffer> :call PhpCsFixerFixFile()
+" }}}
+" DBGPavim{{{
+    " let g:dbgPavimPort = 9001
+    " let g:dbgPavimBreakAtEntry = 0
 " }}}
