@@ -3,8 +3,18 @@ call plug#begin('~/.vim/plugged')
 "brookhong/DBGPavim
 " Plug 'brookhong/DBGPavim'
 
+" Plug 'shougo/vimproc'
+" Plug 'Shougo/vimshell.vim'
+
+" Plug 'Chiel92/vim-autoformat'
+
+Plug 'tomlion/vim-solidity'
+
 " syntastic
 Plug 'scrooloose/syntastic'
+
+" code format
+Plug 'shenopkss/codeformat.vim'
 
 " 自动补全单引号，双引号等
 Plug 'Raimondi/delimitMate'
@@ -23,7 +33,7 @@ Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 
 " trailingwhitespace
 " 快速去行尾空格 [, + <Space>]
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree'
@@ -61,6 +71,9 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'rking/ag.vim'
 
 Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'a.vim'
+
+" Plug 'tomlion/vim-solidity'
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
@@ -68,6 +81,14 @@ Plug 'stephpy/vim-php-cs-fixer'
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end()
+
+" vim-autoformat {{{
+    let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+    let g:formatters_javascript = ['eslint']
+    " let g:formatdef_my_cpp = '"astyle --style=attach --pad-oper --lineend=linux"'
+    " let g:formatters_cpp = ['my_cpp']
+    noremap <leader>af :Autoformat<CR>:w<CR>
+    " }}}
 
 " syntastic {{{
     " dependence
@@ -95,6 +116,8 @@ call plug#end()
     " if js
     " let g:syntastic_javascript_checkers = ['jsl', 'jshint']
     " let g:syntastic_html_checkers=['tidy', 'jshint']
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_always_populate_loc_list = 1
 
     " to see error location list
     let g:syntastic_always_populate_loc_list = 1
@@ -144,27 +167,27 @@ call plug#end()
 
     " 关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
     nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
-" }}}
-"
-" nerdcommenter {{{
+    " }}}
+    "
+    " nerdcommenter {{{
     let g:NERDSpaceDelims=1
     let g:NERDAltDelims_python = 1
-" }}}
-"
-" multiplecursors {{{
+    " }}}
+    "
+    " multiplecursors {{{
     let g:multi_cursor_use_default_mapping=0
     " Default mapping
     let g:multi_cursor_next_key='<C-m>'
     let g:multi_cursor_prev_key='<C-p>'
     let g:multi_cursor_skip_key='<C-x>'
     let g:multi_cursor_quit_key='<Esc>'
-" }}}
-"
-" ag.vim {{{
+    " }}}
+    "
+    " ag.vim {{{
     nnoremap <Leader>gg :Ag<CR>
     let g:ag_working_path_mode="r"
-" }}}
-" fugitive {{{
+    " }}}
+    " fugitive {{{
     " :Gdiff  :Gstatus :Gvsplit
     nnoremap <leader>gd :Gdiff<CR>
     nnoremap <leader>gs :Gstatus<CR>
@@ -173,31 +196,31 @@ call plug#end()
     nnoremap <leader>gl :Glog<CR>
     " <leader>gc maps to :Gcommit<CR>
     " <leader>gp maps to :Git push<CR>
-" }}}
+    " }}}
 
-" airline {{{
+    " airline {{{
     let g:airline_powerline_fonts = 1
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    
+
     if !has("gui_running")
-    let g:airline_left_sep = '▶'
-    let g:airline_left_alt_sep = '❯'
-    let g:airline_right_sep = '◀'
-    let g:airline_right_alt_sep = '❮'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-endif
+        let g:airline_left_sep = '▶'
+        let g:airline_left_alt_sep = '❯'
+        let g:airline_right_sep = '◀'
+        let g:airline_right_alt_sep = '❮'
+        let g:airline_symbols.linenr = '¶'
+        let g:airline_symbols.branch = '⎇'
+    endif
     " 是否打开tabline
     let g:airline#extensions#tabline#enabled = 0
     let g:airline#extensions#tabline#buffer_nr_show = 1
     let g:airline#extensions#tabline#left_sep = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" }}}
+    " }}}
 
-" nerdtree nerdtreetabs {{{
+    " nerdtree nerdtreetabs {{{
     map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
@@ -220,10 +243,10 @@ endif
     " thank to @ListenerRi, see https://github.com/wklken/k-vim/issues/165
     " let g:nerdtree_tabs_open_on_console_startup=0
     " let g:nerdtree_tabs_open_on_gui_startup=0
-" }}}
+    " }}}
 
-" Vim Workspace Controller
-" ctrlspace {{{
+    " Vim Workspace Controller
+    " ctrlspace {{{
     nnoremap <leader><tab> :CtrlSpace<CR>
     let g:airline_exclude_preview = 1
     hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
@@ -238,66 +261,66 @@ endif
         " Settings for MacVim and Inconsolata font
         let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
     endif
-" }}}
+    " }}}
 
-" tagbar {{{
+    " tagbar {{{
     nmap <leader>t :TagbarToggle<CR>
     let g:tagbar_autofocus = 1
     " let g:tagbar_autoshowtag = 1
     " let g:tagbar_show_visibility = 1
     " for ruby
     let g:tagbar_type_ruby = {
-        \ 'kinds' : [
-            \ 'm:modules',
-            \ 'c:classes',
-            \ 'd:describes',
-            \ 'C:contexts',
-            \ 'f:methods',
-            \ 'F:singleton methods'
-        \ ]
-    \ }
+                \ 'kinds' : [
+                \ 'm:modules',
+                \ 'c:classes',
+                \ 'd:describes',
+                \ 'C:contexts',
+                \ 'f:methods',
+                \ 'F:singleton methods'
+                \ ]
+                \ }
 
     " go语言的tagbar配置
     " 1. install gotags 'go get -u github.com/jstemmer/gotags'
     " 2. make sure `gotags` in you shell PATH, you can call check it with `which gotags`
     " for gotags. work with tagbar
     let g:tagbar_type_go = {
-        \ 'ctagstype' : 'go',
-        \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-        \ ],
-        \ 'sro' : '.',
-        \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-        \ },
-        \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-        \ },
-        \ 'ctagsbin'  : 'gotags',
-        \ 'ctagsargs' : '-sort -silent'
-    \ }
-" }}}
+                \ 'ctagstype' : 'go',
+                \ 'kinds'     : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+                \ },
+                \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+                \ },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
+    " }}}
 
-" ctrlp ctrlpfunky{{{
+    " ctrlp ctrlpfunky{{{
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v([\/]\.(git|hg|svn|rvm))|(cache|node_modules|dist|log|vendor)$',
-        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-        \ }
+                \ 'dir':  '\v([\/]\.(git|hg|svn|rvm))|(cache|node_modules|dist|log|vendor)$',
+                \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+                \ }
     let g:ctrlp_working_path_mode=0
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
@@ -320,21 +343,21 @@ endif
     let g:ctrlp_funky_syntax_highlight = 1
 
     let g:ctrlp_extensions = ['funky']
-" }}}
+    " }}}
 
-" quickrun {{{
+    " quickrun {{{
     let g:quickrun_config = {
-    \   "_" : {
-    \       "outputter" : "message",
-    \   },
-    \}
+                \   "_" : {
+                \       "outputter" : "message",
+                \   },
+                \}
 
     let g:quickrun_no_default_key_mappings = 1
     nmap <Leader>r <Plug>(quickrun)
     map <F10> :QuickRun<CR>
-" }}}
+    " }}}
 
-" YouCompleteMe {{{
+    " YouCompleteMe {{{
     "youcompleteme  默认tab  s-tab 和自动补全冲突
     "let g:ycm_key_list_select_completion=['<c-n>']
     " let g:ycm_key_list_select_completion = ['<Down>']
@@ -371,12 +394,12 @@ endif
     " let g:ycm_key_invoke_completion = '<C-Space>'
     " 黑名单,不启用
     let g:ycm_filetype_blacklist = {
-        \ 'tagbar' : 1,
-        \ 'gitcommit' : 1,
-        \}
-" }}}
+                \ 'tagbar' : 1,
+                \ 'gitcommit' : 1,
+                \}
+    " }}}
 
-" ultisnips {{{
+    " ultisnips {{{
     let g:UltiSnipsExpandTrigger       = "<c-j>"
     let g:UltiSnipsJumpForwardTrigger  = "<c-k>"
     let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -405,11 +428,11 @@ endif
     inoremap <c-j> <c-r>=g:JInYCM()<cr>
     au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
     let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
-" }}}
- 
-" stephpy/vim-php-cs-fixer {{{
+    " }}}
+
+    " stephpy/vim-php-cs-fixer {{{
     " If php-cs-fixer is in $PATH, you don't need to define line below
-    " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+    let g:php_cs_fixer_path = "~/.composer/vendor/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
 
     " If you use php-cs-fixer version 1.x
     let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
@@ -433,8 +456,8 @@ endif
     " nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
     nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
     " autocmd FileType php autocmd BufWritePre <buffer> :call PhpCsFixerFixFile()
-" }}}
-" DBGPavim{{{
+    " }}}
+    " DBGPavim{{{
     " let g:dbgPavimPort = 9001
     " let g:dbgPavimBreakAtEntry = 0
-" }}}
+    " }}}

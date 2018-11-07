@@ -1,3 +1,8 @@
+" set pythonhome=/usr/local/opt/python2/Frameworks/Python.framework/Versions/2.7
+" set pythondll=/usr/local/opt/python2/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib
+" set pythonthreehome=/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.7
+" set pythonthreedll=/usr/local/opt/python3/Frameworks/Python.framework/Versions/3.7/lib/libpython3.7.dylib
+
 " 修改leader键
 let mapleader = ';'
 let g:mapleader = ';'
@@ -7,7 +12,7 @@ let g:mapleader = ';'
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+    source ~/.vimrc.bundles
 endif
 
 " ensure ftdetect et al work by including this after the bundle stuff
@@ -407,8 +412,8 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " nnoremap [b :bprevious<cr>
 " nnoremap ]b :bnext<cr>
 " nnoremap <leader><tab> :bnext<cr>
-nnoremap <TAB> :bnext<cr>
-nnoremap <S-TAB> :bprevious<cr>
+nnoremap <S-TAB> :bnext<cr>
+nnoremap <TAB> :bprevious<cr>
 nmap <Leader>d :bd<CR>
 nmap <Leader>l :ls<CR>
 
@@ -485,6 +490,8 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+yy
 nnoremap <leader>p "+p
 
+nnoremap <leader>vs :VimShell<cr>
+
 nnoremap <leader>ay "ayy
 nnoremap <leader>by "byy
 vnoremap <leader>ay "ay
@@ -492,6 +499,8 @@ vnoremap <leader>by "ay
 
 nnoremap <leader>ap "ap
 nnoremap <leader>bp "bp
+
+nnoremap <leader>a :A<cr> 
  
 " auto jump to end of select
 " vnoremap <silent> y y`]
@@ -525,6 +534,7 @@ nnoremap <leader>q :q<CR>
 
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
 
 " 交换 ' `, 使得可以快速使用'跳到marked位置
 nnoremap ' `
@@ -546,13 +556,13 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 " autocmd FileType ruby,javascript,html,css,xml set tabstop=4 shiftwidth=4 softtabstop=4 expandtab ai;
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
-autocmd BufRead,BufNewFile *.vue,*.twig,*.blade.php set filetype=html
+autocmd BufRead,BufNewFile *.peb,*.vue,*.twig,*.blade.php,*.wpy set filetype=html
+" autocmd FileType vue syntax sync fromstart
+" au BufRead,BufNewFile *.wpy setlocal filetype=vue.html.javascript.css
+
+
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
-
-
-
-
 
 " 保存python文件时删除多余空格
 fun! <SID>StripTrailingWhitespaces()
@@ -687,9 +697,21 @@ highlight SpellLocal term=underline cterm=underline
 
     " 行尾添加符号
     nmap <Leader>; $a;
+    " nmap <Leader>j ^i// <Esc>
     nmap <Leader>, $a,
     nmap <Leader>= $a => 
     nmap <Leader>: $a : 
     nmap <Leader>{ $a{
-    nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-" }}}
+
+    inoremap <C-a> <Esc>^i
+    inoremap <C-e> <Esc>$i
+    inoremap <C-f> <Right> 
+    inoremap <C-b> <Left> 
+
+    inoremap <C-h> <Left>
+    inoremap <C-j> <Down>
+    inoremap <C-k> <Up>
+    inoremap <C-l> <Right>
+
+
+    " }}}
