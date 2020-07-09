@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+rm ~/.vim
+rm ~/.vimrc
+rm ~/.vimrc.bundles
+rm -rf autoload plugged
+
 mkdir autoload
 curl -fLo ./autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

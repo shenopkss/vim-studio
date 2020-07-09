@@ -79,7 +79,7 @@ set t_vb=
 set tm=500
 
 " Remember info about open buffers on close
-set viminfo^=%
+" set viminfo^=%
 
 " For regular expressions turn magic on
 set magic
@@ -199,14 +199,14 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
-" 防止tmux下vim的背景色显示异常
-" Refer: http://sunaku.github.io/vim-256color-bce.html
-if &term =~ '256color'
-  " disable Background Color Erase (BCE) so that color schemes
-  " render properly when inside 256-color tmux and GNU screen.
-  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-  set t_ut=
-endif
+" " 防止tmux下vim的背景色显示异常
+" " Refer: http://sunaku.github.io/vim-256color-bce.html
+" if &term =~ '256color'
+  " " disable Background Color Erase (BCE) so that color schemes
+  " " render properly when inside 256-color tmux and GNU screen.
+  " " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  " set t_ut=
+" endif
 
 "==========================================
 " FileEncode Settings 文件编码,格式
@@ -412,9 +412,10 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " nnoremap [b :bprevious<cr>
 " nnoremap ]b :bnext<cr>
 " nnoremap <leader><tab> :bnext<cr>
-nnoremap <S-TAB> :bnext<cr>
-nnoremap <TAB> :bprevious<cr>
-nmap <Leader>d :bd<CR>
+nnoremap <TAB> :bnext<cr>
+nnoremap <S-TAB> :bprevious<cr>
+nmap <Leader>d :Bdelete<CR>
+" nmap <Leader>d :bd<CR>
 nmap <Leader>l :ls<CR>
 
 noremap <leader>1 :1b<cr>
@@ -638,9 +639,12 @@ endif
 " Set extra options when running in GUI mode
 if has("gui_running")
     " set guifont=Monaco:h11
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+    set guifont=JetBrains\ Mono\ for\ Powerline:h12
+    " set guifont=JetBrainsMono:h12
     if has("gui_gtk2")   "GTK2
-        set guifont=Monaco\ 11,Monospace\ 11
+        " set guifont=Monaco\ 11,Monospace\ 11
+        " set guifont=JetBrainsMono:h12
+        set guifont=JetBrains\ Mono\ for\ Powerline:h11
     endif
     set mouse=a
     set guioptions-=T
@@ -660,7 +664,7 @@ endif
 
 
 " theme主题
-" set background=dark
+set background=dark
 set t_Co=256
 
 colorscheme dracula
