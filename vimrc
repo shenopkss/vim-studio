@@ -639,12 +639,12 @@ endif
 " Set extra options when running in GUI mode
 if has("gui_running")
     " set guifont=Monaco:h11
-    set guifont=JetBrains\ Mono\ for\ Powerline:h12
+    set guifont=JetBrains\ Mono:h12
     " set guifont=JetBrainsMono:h12
     if has("gui_gtk2")   "GTK2
         " set guifont=Monaco\ 11,Monospace\ 11
         " set guifont=JetBrainsMono:h12
-        set guifont=JetBrains\ Mono\ for\ Powerline:h11
+        set guifont=JetBrains\ Mono:h12
     endif
     set mouse=a
     set guioptions-=T
