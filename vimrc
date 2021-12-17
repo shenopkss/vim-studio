@@ -318,6 +318,8 @@ nnoremap <F3> :set list! list?<CR>
 " F4 换行开关
 nnoremap <F4> :set wrap! wrap?<CR>
 
+nnoremap <F5> :!sh run.sh<CR>
+
 " F6 语法开关，关闭语法可以加快大文件的展示
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
@@ -716,6 +718,5 @@ highlight SpellLocal term=underline cterm=underline
     inoremap <C-j> <Down>
     inoremap <C-k> <Up>
     inoremap <C-l> <Right>
-
 
     " }}}

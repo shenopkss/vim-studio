@@ -9,9 +9,17 @@ call plug#begin('~/.vim/plugged')
 " Plug 'Chiel92/vim-autoformat'
 
 " Plug 'tomlion/vim-solidity'
+"
+Plug 'rust-lang/rust.vim'
+
+Plug 'uarun/vim-protobuf'
 
 Plug 'tpope/vim-dadbod'
 vmap RR :DB<CR>
+
+Plug 'godlygeek/tabular'
+nmap t: :Tab /:<CR>
+nmap t= :Tab /=<CR>
 "
 Plug 'kristijanhusak/vim-dadbod-ui'
 let g:dbs = {
